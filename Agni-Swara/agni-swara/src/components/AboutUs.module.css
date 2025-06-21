@@ -1,0 +1,81 @@
+/* AboutUs Component Styles */
+
+.about-us-section {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.about-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 1200px;
+  overflow: hidden;
+  background: url('../../public/aboutus.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+}
+
+.about-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 15vh 4rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+}
+
+.about-text {
+  max-width: 1400px;
+  text-align: center;
+  color: white;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-text h2 {
+  font-size: 6rem;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+}
+
+.about-text .section-subtitle {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--secondary-color);
+}
+
+.band-story {
+  max-width: 1400px;
+  margin: 0 auto;
+  color: white;
+  width: 100%;
+}
+
+.section-heading {
+  font-size: 3.5rem;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.section-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  color: white;
+  width: 100%;
+}
