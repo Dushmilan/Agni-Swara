@@ -4,19 +4,19 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Hide when scrolling down
-      if (currentScrollY > lastScrollY && currentScrollY > 0) {
-        setScrolled(true);
-      } else {
-        // Show when scrolling up
+     
+      // Only show navbar at the top of the page
+      if (currentScrollY === 0) {
         setScrolled(false);
+      } else {
+        setScrolled(true);
       }
-      
+     
       setLastScrollY(currentScrollY);
     };
 
@@ -24,45 +24,121 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Close menu when clicking on a nav link (for mobile)
+  const handleNavLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  // Close menu when clicking outside (for better UX)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest(`.${styles.navbar}`)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   return (
-    <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-      <div className="container-fluid px-0">
-        <a className="navbar-brand d-flex align-items-center" href="#home" aria-label="Agni Swara Home">
-          <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
-            <circle cx="20" cy="20" r="18" fill="#3498db" />
-            <text x="50%" y="50%" textAnchor="middle" dy=".3em" fill="white" fontSize="16">
-              AS
-            </text>
-          </svg>
-          <h1 className="ms-3 mb-0 text-light">Agni Swara</h1>
-        </a>
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#home">Home</a>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+      <div className={styles.fullWidthContainer}>
+        <div className={styles.navbarContent}>
+          <a 
+            className={styles.navbarBrand} 
+            href="#home" 
+            aria-label="Agni Swara Home"
+            onClick={handleNavLinkClick}
+          >
+            <img 
+              src="/Logo.jpg" 
+              alt="Agni Swara Logo" 
+              width="80" 
+              height="80" 
+              className={styles.navbarBrandImg} 
+            />
+          </a>
+
+          {/* Hamburger Menu Button - CSS controls visibility */}
+          <button
+            className={`${styles.menuToggle} ${isMenuOpen ? styles.open : ''}`}
+            onClick={handleMenuToggle}
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          {/* Navigation Links */}
+          <ul
+            className={`${styles.navLinks} ${isMenuOpen ? styles.showMenu : ''}`}
+            role="navigation"
+          >
+            <li className={styles.navItem}>
+              <a 
+                className={styles.navLink} 
+                href="#home"
+                onClick={handleNavLinkClick}
+              >
+                Home
+              </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#band">Band</a>
+            <li className={styles.navItem}>
+              <a 
+                className={styles.navLink} 
+                href="#band"
+                onClick={handleNavLinkClick}
+              >
+                Band
+              </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#events">Events</a>
+            <li className={styles.navItem}>
+              <a 
+                className={styles.navLink} 
+                href="#events"
+                onClick={handleNavLinkClick}
+              >
+                Events
+              </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#about">About</a>
+            <li className={styles.navItem}>
+              <a 
+                className={styles.navLink} 
+                href="#about"
+                onClick={handleNavLinkClick}
+              >
+                About
+              </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#contact">Contact</a>
+            <li className={styles.navItem}>
+              <a 
+                className={styles.navLink} 
+                href="#contact"
+                onClick={handleNavLinkClick}
+              >
+                Contact
+              </a>
             </li>
           </ul>
         </div>

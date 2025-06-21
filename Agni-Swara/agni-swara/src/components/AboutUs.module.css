@@ -1,16 +1,24 @@
 /* AboutUs Component Styles */
 
-.about-us-section {
-  padding: 0;
+.aboutUsSection {
+  width: 100%;
+  padding: 4rem 0 2rem;
   position: relative;
   overflow: hidden;
-  width: 100vw;
+  background-color: #050505;
+  background: linear-gradient(180deg, #342d03 0%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 1) 100%);
+  background-image: linear-gradient(45deg, transparent 0%, rgba(255, 215, 0, 0.1) 25%,
+                                   rgba(255, 215, 0, 0.1) 75%, transparent 100%),
+                                  linear-gradient(-45deg, transparent 0%, rgba(255, 215, 0, 0.1) 25%,
+                                                 rgba(255, 215, 0, 0.1) 75%, transparent 100%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
 }
 
-.about-hero {
+.aboutHero {
   position: relative;
   height: 100vh;
-  min-height: 1200px;
+  min-height: 800px;
   overflow: hidden;
   background: url('../../public/aboutus.jpg');
   background-size: cover;
@@ -18,18 +26,18 @@
   background-repeat: no-repeat;
 }
 
-.about-hero::before {
+.aboutHero::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1;
 }
 
-.about-overlay {
+.aboutOverlay {
   position: relative;
   z-index: 2;
   padding: 15vh 4rem;
@@ -37,15 +45,60 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: none;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.about-text {
-  max-width: 1400px;
+.aboutText {
+  max-width: 1000px;
   text-align: center;
   color: white;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 3;
+}
+
+.aboutTitle {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.aboutSubtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #ffd700;
+  letter-spacing: 1px;
+}
+
+.aboutContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.aboutContent p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.storySection {
+  margin-top: 3rem;
+}
+
+.storySection h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .about-text h2 {

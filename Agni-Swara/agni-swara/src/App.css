@@ -1,28 +1,65 @@
-.App {
-  text-align: center;
+:root {
+  --background-color: #050505;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
+
+.app {
+  min-height: 100vh;
+  background-color: rgba(14, 14, 14, 1);
+  background-image: linear-gradient(45deg, rgba(186, 145, 24, 0.05) 25%, transparent 25%,
+                                  transparent 75%, rgba(186, 145, 24, 0.05) 75%,
+                                  rgba(186, 145, 24, 0.05) 100%),
+                                 linear-gradient(-45deg, rgba(186, 145, 24, 0.05) 25%, transparent 25%,
+                                                transparent 75%, rgba(186, 145, 24, 0.05) 75%,
+                                                rgba(186, 145, 24, 0.05) 100%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero Section Override */
+.heroSection {
+  background-color: var(--background-color) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .band-section,
+  .events-section,
+  .about-section,
+  .contact-section {
+    padding: 4rem 0;
+  }
+
+  .band-section h2,
+  .events-section h2,
+  .about-section h2,
+  .contact-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+  
 
 .App-link {
   color: #61dafb;

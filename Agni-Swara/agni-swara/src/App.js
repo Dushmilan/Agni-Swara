@@ -11,8 +11,7 @@ function App() {
     <div className="app">
       <Navbar />
       <Hero id="home" />
-      <section id="band" className="band-section">
-        <h2>Meet the Band</h2>
+      <section id="band" className="band-members-section">
         <BandMembers />
       </section>
       <section id="events" className="events-section">

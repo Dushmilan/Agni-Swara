@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './BandMembers.module.css';
 
 const BandMembers = () => {
   const members = [
@@ -25,14 +26,17 @@ const BandMembers = () => {
   ];
 
   return (
-    <div className="band-members">
-      <div className="members-container">
+    <div className={styles.bandMembers}>
+      <div className={styles.bandMembersHeader}>
+        <h2>Meet the Band</h2>
+      </div>
+      <div className={styles.membersContainer}>
         {members.map((member, index) => (
-          <div key={index} className="member-card">
-            <div className="member-image" style={{ backgroundImage: `url(${member.image})` }}></div>
-            <div className="member-info">
-              <h3 className="member-name">{member.name}</h3>
-              <p className="member-role">{member.role}</p>
+          <div key={index} className={styles.memberCard}>
+            <div className={styles.memberImage} style={{ backgroundImage: `url(${member.image})` }}></div>
+            <div className={styles.memberInfo}>
+              <h3 className={styles.memberName}>{member.name}</h3>
+              <p className={styles.memberRole}>{member.role}</p>
             </div>
           </div>
         ))}
